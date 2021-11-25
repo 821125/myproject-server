@@ -1,37 +1,26 @@
-<!DOCTYPE html>
 {% extends 'mainapp/base.html' %}
-{% load static %}
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>{{ title }}</title>
-
-</head>
-<body>
-	<div class="container">
-		{% block menu %}
+{% block title %}
+	{{ title|title }}
+{% endblock %}
+    {% block menu %}
 		<div class="slider">
 			<div class="header clearfix">
-				<a href="index.html" class="logo"></a>
-				<ul class="menu">
-					<li><a href="{% url 'index' %}" class="active">домой</a></li>
-					<li><a href="{% url 'products' %}">продукты</a></li>
-					<li><a href="{% url 'contact' %}">контакты</a></li>
-				</ul>
+				<a href="{% url 'index' %}" class="logo"></a>
+				{% include 'mainapp/includes/inc__main_menu.html' %}
 				<a href="#" class="search"></a>
 			</div>
 			<div class="text-slider">
-				<h3 class="green">тенденции</h3>
+				<h3 class="green">тенденции {% now "Y" %}</h3>
 				<h3 class="big"> удобные стулья</h3>
 				<p>Новый уровень комфорта. Отличные характеристики.</p>
-				<a href="#" class="button-order">заказать <img src="static/img/arrow.png" alt=""></a>
-			</div>	
+				<a href="#" class="button-order">заказать <img src="static/img/arrow.png'" alt=""></a>
+			</div>
 			<div class="navi">
 				<a href="#"></a><a href="#"></a><a href="#"></a>
 			</div>
 		</div>
-		{% endblock %}
-		{% block content %}
+	{% endblock %}
+    {% block content %}
 		<div class="featured">
 			<div class="featured-menu">
 					<a class="active" href="#">Популярные</a><a href="#">Новинки</a>
@@ -46,7 +35,7 @@
 							<img src="static/img/icon-hover.png" alt="img">
 							<h4>Отличный стул</h4>
 							<p>Расположитесь комфортно. </p>
-						</div> 
+						</div>
 					</a>
 				</div>
 				<div class="block">
@@ -57,14 +46,10 @@
 							<p>Не оторваться. </p>
 						</div>
 					</a>
-				</div>	
+				</div>
 			</div>
-
 		</div>
 
 		<div class="clr"></div>
-		{% endblock %}
-	</div>
 
-</body>
-</html>
+   {% endblock %}
