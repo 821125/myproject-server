@@ -54,3 +54,11 @@ class ShopUserEditForm(UserChangeForm):
         if data < 18:
             raise forms.ValidationError('Слишком молод!')
         return data
+
+    # def clean_email(self):
+    #     data = self.cleaned_data['email']
+    #     is_exists = ShopUser.objects.exclude(pk=self.instance.pk).filter(email=data).exists()
+    #     # select count(1) from users where email='admin@service.ru';
+    #     count_of_users = ShopUser.objects.exclude(pk=self.instance.pk).filter(email=data).count()
+    #     # select count(*) from users where email='admin@service.ru';
+    #     if ...
