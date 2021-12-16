@@ -1,7 +1,7 @@
 """geekshop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,22 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from mainapp.views import index, products, contact,main
+from django.urls import path, include
+
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import include
+from mainapp import views as mainapp
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', main, name='index'),
+    path('', mainapp.index, name='index'),
+    path('contact/', mainapp.contact, name='contact'),
     path('products/', include('mainapp.urls', namespace='products')),
-    path('auth/', include('authnapp.urls', namespace='auth')),
-    path('contact/', contact, name='contact'),
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    path('auth/', include('authapp.urls', namespace='auth')),
 
-
+    path('admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
